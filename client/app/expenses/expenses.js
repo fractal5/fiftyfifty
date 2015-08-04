@@ -29,6 +29,7 @@ angular.module('fifty.expenses', [])
   $scope.addExpense = function () {
     Expenses.addExpense($scope.expense).then(function () {
       // XXX EE: load / display the new expense added
+      $scope.getExpenses();
     })
     .catch(function (error) {
       console.log(error);
