@@ -15,6 +15,12 @@ module.exports = function (app) {
     .get(expenseController.allExpenses)
     .post(expenseController.newExpense);
 
+  // Route for req to get graph data
+  // XXX EE: ideally should support parameters for 
+  // specifiying time period, other search params.
+  app.route('/reports')
+    .get(expenseController.expensesPerPayer);
+
   // app.get('/:code', linksController.navToLink);
 
 };

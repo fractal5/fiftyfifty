@@ -1,6 +1,7 @@
 angular.module('fifty', [
   'fifty.services',
   'fifty.expenses',
+  'fifty.reports',
   // 'shortly.shorten',
   'fifty.auth',
   'ngRoute'
@@ -18,6 +19,11 @@ angular.module('fifty', [
     .when('/expenses', {
       templateUrl: 'app/expenses/expenses.html',
       controller: 'ExpensesController',
+      authenticate: true,
+    })
+    .when('/reports', {
+      templateUrl: 'app/expenses/reports.html',
+      controller: 'ReportsController',
       authenticate: true,
     })
     // .when('/shorten', {

@@ -21,9 +21,21 @@ angular.module('fifty.services', [])
     });
   };
 
+  var getSpending = function() {
+    console.log("Expenses.getSpending");
+    return $http({
+      method: 'GET',
+      url: '/api/expenses/reports'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   return {
     getAll: getAll,
-    addExpense: addExpense
+    addExpense: addExpense,
+    getSpending: getSpending
   };
 })
 .factory('Auth', function ($http, $location, $window) {

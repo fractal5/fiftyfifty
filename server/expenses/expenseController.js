@@ -1,5 +1,6 @@
 var Expense = require('./expenseModel');
 var Expenses = require('./expenseCollection');
+var db = require('../config');
 // var Q = require('q');
 // var util = require('../config/utils.js');
 
@@ -75,6 +76,54 @@ module.exports = {
       next(err);
     });
 
+  },
+
+
+  // Open Questions: 
+  // - how much work to do here vs on the client?
+  // - what format to return the data to the client?
+  expensesPerPayer: function (req, res, next) {
+    // Get the list of distinct payers for this user/group
+    //  select distinct payer from expenses where userid = id
+    //
+    // For each payer, sum the amount that they paid.
+    //  select *, sum(payer) from expenses wehre userid = id 
+    //  and payer = currplayer
+    //
+    var userid = req.user.id;
+
+    // db.knex('expenses').distinct('payer')
+    //   .where('userid', userid).select().then(function(data) {
+    //     // [ { payer: 'Alice' }, ... ]
+    //     console.log('expensesPerPayer: unique payers', data); 
+    //   });
+
+    // select payer, sum(amount) from expenses 
+    //   where userid = id 
+    //   group by payer;
+
+    // db.knex('expenses').groupBy('payer').where('userid', userid).
+    //   sum('amount').select('payer').then(function(data) {
+    //     console.log("expensesPerPayer: data");
+    // });
+
+    // expensesPerPayer: data  [ { 'sum(`amount`)': 425 },
+    // { 'sum(`amount`)': 3000 },
+    // { 'sum(`amount`)': 500 },
+    // { 'sum(`amount`)': 570 } ]
+
+    // expensesPerPayer: data  [ { payer: 'Alice', 'sum(`amount`)': 425 },
+    // { payer: 'Bob', 'sum(`amount`)': 3000 },
+    // { payer: 'Dan', 'sum(`amount`)': 500 },
+    // { payer: 'Kat', 'sum(`amount`)': 570 } ]
+
+    db.knex('expenses').groupBy('payer').where('userid', userid).select('payer').sum('amount').then(function(data) {
+      console.log("expensesPerPayer: data ", data);
+      res.send(200, data);
+    })
+    .catch(function(err) {
+      next(err);
+    });
   },
 
   // navToLink: function (req, res, next) {
