@@ -1,0 +1,73 @@
+<div id='container'>
+  <!-- Your html here -->
+
+  <nav class="navigation">
+    <ul>
+      <li>
+          <a class="selected" href="#/expenses">Expenses</a>
+      </li>
+<!--        <li>
+          <a href="#/shorten">Shorten</a>
+      </li>
+ -->    
+    </ul>
+  </nav>
+</div>
+
+<h2> New Expense </h2>
+
+<form name="expenseForm" ng-submit="addExpense()" class="form-inline" novalidate>
+  <input name="date" type="date"
+    ng-model="expense.date"
+    placeholder="Date" required
+    ng-class="{'error': expenseForm.$invalid && expenseForm.$dirty}" required/>
+
+  <input name="payee" type="text" ng-model="expense.payee" placeholder="Payee" required>
+
+  <input name="amount" type="number" ng-model="expense.amount" placeholder="Amount" required>
+
+  <input name="category" type="text" ng-model="expense.category" placeholder="Expense Category">
+
+  <input name="payer" type="text" ng-model="expense.payer" placeholder="Who Paid" required>
+
+  <button type="submit" value="Track It!" 
+    ng-disabled='expenseForm.$invalid'>Track
+  </button>
+
+</form>
+
+<!-- <input type='text' ng-model='search' placeholder='filter' /> -->
+
+<div class="expenses">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Payee</th>
+      <th>Amount</th>
+      <th>Expense Category</th>
+      <th>Who Paid</th>
+    </tr>
+    <tr ng-repeat="expense in data.expenses | orderBy: '-date' ">
+      <td class="date">{{ expense.date | dateFormat: 'MM/dd/yyyy' }}</td>
+      <!-- <td class="date">{{ expense.date }}</td> -->
+      <td class="payee">{{ expense.payee }}</td>
+      <td class="amount">{{ expense.amount }}</td>
+      <td class="category">{{ expense.category }}</td>
+      <td class="payer">{{ expense.payer }}</td>
+    </tr>
+
+  <!--
+  <div class="expense"
+      ng-repeat="expense in data.expenses | filter:search | orderBy:'-created_at'">
+    <div class="info">
+      <div class="visits"> 
+        <span class="count">{{ link.visits }}</span>Visits
+      </div>
+      <div class="title">{{ link.title }}</div>
+      <div class="original">{{ link.url }}</div>
+      <a href="http://localhost:8000/api/links/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>
+    </div>
+  </div>
+  -->
+</table>
+</div>

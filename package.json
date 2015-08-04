@@ -1,0 +1,43 @@
+{
+  "name": "fifty-fifty",
+  "version": "0.0.1",
+  "description": "Fifty-Fifty Expense Tracking",
+  "main": "fifty.js",
+  "repository": "",
+  "license": "Proprietary",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js"
+  },
+  "devDependencies": {
+    "browser-sync": "^1.5.7",
+    "gulp": "^3.8.5",
+    "gulp-if": "^1.2.5",
+    "gulp-jshint": "^1.6.3",
+    "gulp-karma": "0.0.4",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-shell": "^0.2.7",
+    "jshint-stylish": "^0.2.0"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "1.0.8",
+    "body-parser": "^1.5.2",
+    "bookshelf": "~0.6.4",
+    "ejs": "~0.8.5",
+    "express": "~4.0.0",
+    "express-partials": "~0.2.0",
+    "express-session": "^1.7.2",
+    "forever": "^0.10.11",
+    "jwt-simple": "^0.2.0",
+    "knex": "~0.5.7",
+    "morgan": "^1.1.1",
+    "mysql": "^2.4.2",
+    "nodemon": "^1.2.1",
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0",
+    "q": "^1.0.1",
+    "request": "^2.34.0",
+    "sqlite3": "~3.0.5"
+  }
+}
