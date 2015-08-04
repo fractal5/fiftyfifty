@@ -22,6 +22,83 @@ angular.module('fifty.reports', [])
   $scope.getSpending();
 
 })
+
+.directive('spendingReport', function($window) {
+  return {
+    restrict: 'A',
+    scope: {
+      data: '=' 
+    },
+    template: '<div class="chart"></div>',
+    link: function(scope, elem, attrs) {
+      var margin = parseInt(attrs.margin) || 20;
+      var barHeight = parseInt(attrs.barHeight) || 20;
+      var barPadding = parseInt(attrs.barPadding) || 5;
+
+
+      // var svg = d3.select(elem[0])
+      //       .append('svg')
+      //       .style('width', '100%');
+
+
+      // Browser onresize event
+      // window.onresize = function() {
+      //   // scope.$apply();
+      // };
+
+      // Hardcoded data to play with for now ...
+      // var spending =  [ 
+      //     { payer: 'Alice', 'sum(`amount`)': 425 },
+      //     { payer: 'Bob', 'sum(`amount`)': 3000 },
+      //     { payer: 'Dan', 'sum(`amount`)': 500 },
+      //     { payer: 'Kat', 'sum(`amount`)': 870 } 
+      // ];
+
+      // d3.select(".chart")
+      //   .selectAll("div")
+      //     // .data($scope.data.spending)
+      //     .data(spending)
+      //   .enter().append("div")
+      //     .style("width", function(d) { return d['sum(`amount`)'] / 3 + "px"; })
+      //     .text(function(d) { return (d.payer + ': ' + d['sum(`amount`)']); });
+
+      // Watch for resize event
+      // scope.$watch(function() {
+      //   // return angular.element($window)[0].innerWidth;
+      // }, function() {
+      //   scope.render(scope.data);
+      // });
+
+      scope.$watch('data', function(newVals, oldVals) {
+        return scope.render(newVals);
+      }, true);
+
+
+      scope.render = function(data) {
+        // our custom d3 code
+        if (!data) {
+          return;
+        }
+
+        // EE: this render function hook up seems to be getting 
+        // the correct data now
+        console.log('spendingReport: render with data ', data);
+
+        d3.select(".chart")
+        .selectAll("div")
+          // .data(data.spending)
+          .data(data)
+          // .data(spending)
+          .enter().append("div")
+          .style("width", function(d) { return d['sum(`amount`)'] / 3 + "px"; })
+          .text(function(d) { return (d.payer + ': ' + d['sum(`amount`)']); });
+        };
+    }
+  };
+});
+
+
+/*
 // .directive('spendingReport', function($parse, $window, Expenses) {
 .directive('spendingReport', ['Expenses', function(Expenses) {
   return {
@@ -65,9 +142,8 @@ angular.module('fifty.reports', [])
     //     }
     //   });
     // },
-    
+
     link: function(scope, elem, attrs){
-      // d3 = $window.d3;
 
       console.log('spendingReport attrs: ', attrs);
       console.log('spendingReport scope.data: ', scope.data);
@@ -100,106 +176,12 @@ angular.module('fifty.reports', [])
           // .text(function(d) { return d; });
     }
 
-/*
-     link: function(scope, elem, attrs){
-           var exp = $parse(attrs.chartData);
-
-           var salesDataToPlot=exp(scope);
-           var padding = 20;
-           var pathClass="path";
-           var xScale, yScale, xAxisGen, yAxisGen, lineFun;
-
-           var d3 = $window.d3;
-           var rawSvg=elem.find('svg');
-           var svg = d3.select(rawSvg[0]);
-
-           scope.$watchCollection(exp, function(newVal, oldVal){
-               salesDataToPlot=newVal;
-               redrawLineChart();
-           });
-
-           function setChartParameters(){
-
-               xScale = d3.scale.linear()
-                   .domain([salesDataToPlot[0].hour, salesDataToPlot[salesDataToPlot.length-1].hour])
-                   .range([padding + 5, rawSvg.attr("width") - padding]);
-
-               yScale = d3.scale.linear()
-                   .domain([0, d3.max(salesDataToPlot, function (d) {
-                       return d.sales;
-                   })])
-                   .range([rawSvg.attr("height") - padding, 0]);
-
-               xAxisGen = d3.svg.axis()
-                   .scale(xScale)
-                   .orient("bottom")
-                   .ticks(salesDataToPlot.length - 1);
-
-               yAxisGen = d3.svg.axis()
-                   .scale(yScale)
-                   .orient("left")
-                   .ticks(5);
-
-               lineFun = d3.svg.line()
-                   .x(function (d) {
-                       return xScale(d.hour);
-                   })
-                   .y(function (d) {
-                       return yScale(d.sales);
-                   })
-                   .interpolate("basis");
-           }
-         
-         function drawLineChart() {
-
-               setChartParameters();
-
-               svg.append("svg:g")
-                   .attr("class", "x axis")
-                   .attr("transform", "translate(0,180)")
-                   .call(xAxisGen);
-
-               svg.append("svg:g")
-                   .attr("class", "y axis")
-                   .attr("transform", "translate(20,0)")
-                   .call(yAxisGen);
-
-               svg.append("svg:path")
-                   .attr({
-                       d: lineFun(salesDataToPlot),
-                       "stroke": "blue",
-                       "stroke-width": 2,
-                       "fill": "none",
-                       "class": pathClass
-                   });
-           }
-
-           function redrawLineChart() {
-
-               setChartParameters();
-
-               svg.selectAll("g.y.axis").call(yAxisGen);
-
-               svg.selectAll("g.x.axis").call(xAxisGen);
-
-               svg.selectAll("."+pathClass)
-                   .attr({
-                       d: lineFun(salesDataToPlot)
-                   });
-           }
-
-           drawLineChart();
-       }
-   };
-   */
 
 
   } // end of return block
 
-  // return {
-  //   link: link
-  // };
 
 }]);
+*/
 
 
