@@ -32,10 +32,22 @@ angular.module('fifty.services', [])
     });
   };
 
+  var getCategories = function() {
+    console.log("Expenses.getCategories");
+    return $http({
+      method: 'GET',
+      url: '/api/expenses/categories'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
   return {
     getAll: getAll,
     addExpense: addExpense,
-    getSpending: getSpending
+    getSpending: getSpending,
+    getCategories: getCategories
   };
 })
 .factory('Auth', function ($http, $location, $window) {

@@ -21,6 +21,9 @@ module.exports = function (app) {
   app.route('/reports')
     .get(expenseController.expensesPerPayer);
 
+  app.route('/categories')
+    .get(expenseController.expensesByCategory);
+
   // app.get('/:code', linksController.navToLink);
 
 };

@@ -126,6 +126,28 @@ module.exports = {
     });
   },
 
+  expensesByCategory: function (req, res, next) {
+    // Get the list of distinct payers for this user/group
+    //  select distinct payer from expenses where userid = id
+    //
+    // For each payer, sum the amount that they paid.
+    //  select *, sum(payer) from expenses wehre userid = id 
+    //  and payer = currplayer
+    //
+    var userid = req.user.id;
+
+
+
+    db.knex('expenses').groupBy('category').where('userid', userid).select('category').sum('amount').then(function(data) {
+      console.log("expensesByCategory: data ", data);
+      res.send(200, data);
+    })
+    .catch(function(err) {
+      next(err);
+    });
+  },
+
+
   // navToLink: function (req, res, next) {
   //   var link = req.navLink;
   //   link.visits++;
