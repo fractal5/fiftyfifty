@@ -50,13 +50,22 @@ angular.module('fifty.categories', [])
 
 
       scope.$watch('data', function(newVals, oldVals) {
-        // return scope.render(newVals);
+        return scope.render(newVals);
       }, true);
 
 
       scope.render = function(data) {
         // our custom d3 code
-        if (!data) {
+
+        // looks like just checking if data is ! is not sufficient
+        // if (!data) {
+        //   return;
+        // }
+        var count = 0;
+        for (var k in data) {
+          count++;
+        }
+        if (count === 0) {
           return;
         }
         console.log('categoriesReport: render with data ', data);
@@ -124,7 +133,7 @@ angular.module('fifty.categories', [])
     //       .text(function(d) { return (d.payer + ': ' + d['sum(`amount`)']); });
         }; // end scope.render
 
-        scope.render(categories);
+        // scope.render(categories);
     } // end link
   } // end return
 }); // end directive
