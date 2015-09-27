@@ -1,5 +1,4 @@
 <div id='container'>
-  <!-- Your html here -->
   <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <a href="#" class="navbar-brand">Fifty-Fifty</a>
@@ -11,99 +10,7 @@
         </ul>
       </div>
     </div>
-
-<!--   <nav class="navigation">
-    <ul>
-      <li>
-          <a class="selected" href="#/expenses">Expenses</a>
-      </li>
- --><!--        <li>
-          <a href="#/shorten">Shorten</a>
-      </li>
- -->    
-<!--     </ul>
-  </nav>
- -->
 </div>
 
-<!-- <div id="main" spending-report ng-model="data.spending"></div> -->
 <h4>How Much Did Each Person Pay?</h4>
 <div id="main" spending-report data="data.spending"></div>
-
-
-<!-- <div id="main" class="chart" spending-report chart-data="data.spending"></div> -->
-<!-- <div id="main" spending-report chart-data="data"></div> -->
-
-<!-- <div id="main">
-<h4> New Expense </h4>
-
-<form name="expenseForm" ng-submit="addExpense()" class="form-inline" novalidate>
-  <div class="form-group">
-  <input name="date" type="date"
-    ng-model="expense.date"
-    placeholder="Date" required
-    ng-class="{'error': expenseForm.$invalid && expenseForm.$dirty}" required/>
-  </div>
-
-  <div class="form-group">
-  <input name="payee" type="text" ng-model="expense.payee" placeholder="Payee" required>
-  </div>
-
-  <div class="form-group">
-  <input name="amount" type="number" ng-model="expense.amount" placeholder="Amount" required>
-  </div>
-
-  <div class="form-group">
-  <input name="category" type="text" ng-model="expense.category" placeholder="Expense Category">
-  </div>
-
-  <div class="form-group">
-  <input name="payer" type="text" ng-model="expense.payer" placeholder="Who Paid" required>
-  </div>
-
-  <button type="submit" value="Track It!" 
-    ng-disabled='expenseForm.$invalid'>Track
-  </button>
-
-</form>
- -->
-<!-- <input type='text' ng-model='search' placeholder='filter' /> -->
-
-<!-- <div class="expenses">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Date</th>
-      <th>Payee</th>
-      <th>Amount</th>
-      <th>Expense Category</th>
-      <th>Who Paid</th>
-    </tr>
-  </thead>
-    <tbody>
-    <tr ng-repeat="expense in data.expenses | orderBy: '-date' ">
-      <td class="date">{{ expense.date | dateFormat: 'MM/dd/yyyy' }}</td>
-      <td class="payee">{{ expense.payee }}</td>
-      <td class="amount">{{ expense.amount }}</td>
-      <td class="category">{{ expense.category }}</td>
-      <td class="payer">{{ expense.payer }}</td>
-    </tr>
-  </tbody>
- -->
-  <!--
-  <div class="expense"
-      ng-repeat="expense in data.expenses | filter:search | orderBy:'-created_at'">
-    <div class="info">
-      <div class="visits"> 
-        <span class="count">{{ link.visits }}</span>Visits
-      </div>
-      <div class="title">{{ link.title }}</div>
-      <div class="original">{{ link.url }}</div>
-      <a href="http://localhost:8000/api/links/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>
-    </div>
-  </div>
-  -->
-<!-- </table>
-</div>
-</div>
--->

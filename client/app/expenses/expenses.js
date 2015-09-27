@@ -7,16 +7,12 @@ angular.module('fifty.expenses', [])
   }
 ])
 .controller('ExpensesController', function ($scope, Expenses) {
-  // Your code here
-
   $scope.data = {};
   $scope.expense = {};
 
   $scope.getExpenses = function() {
     Expenses.getAll().then(function(expenses) {
       $scope.data.expenses = expenses;
-    console.log('ExpensesController : getExpenses, expense[0].date', 
-      $scope.data.expenses);
     })
     .catch(function(error) {
       console.error(error);
@@ -28,24 +24,12 @@ angular.module('fifty.expenses', [])
 
   $scope.addExpense = function () {
     Expenses.addExpense($scope.expense).then(function () {
-      // XXX EE: load / display the new expense added
       $scope.getExpenses();
     })
     .catch(function (error) {
       console.log(error);
     });
   };
-
-  // $scope.getLinks = function () {
-  //   Links.getAll()
-  //     .then(function (links) {
-  //       $scope.data.links = links;
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // };
-  // $scope.getLinks();
 });
 
 

@@ -27,7 +27,6 @@ module.exports = {
       // for use inside our controllers
       user = jwt.decode(token, 'secret');
       req.user = user;
-      console.log('decode - user: ', user);
       next();
     } catch(error) {
       return next(error);

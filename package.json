@@ -2,7 +2,7 @@
   "name": "fifty-fifty",
   "version": "0.0.1",
   "description": "Fifty-Fifty Expense Tracking",
-  "main": "fifty.js",
+  "main": "server/server.js",
   "repository": "",
   "license": "Proprietary",
   "private": true,
@@ -37,7 +37,6 @@
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
     "q": "^1.0.1",
-    "request": "^2.34.0",
-    "sqlite3": "~3.0.5"
+    "request": "^2.34.0"
   }
 }

@@ -1,19 +1,14 @@
-// do not tamper with this code in here, study it, but do not touch
-// this Auth controller is responsible for our client side authentication
+// This Auth controller is responsible for our client side authentication
 // in our signup/signin forms using the injected Auth service
 angular.module('fifty.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
 
-  console.log('AuthController instantiated.');
-
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.fifty', token);
-
-        // XXX EE: right path?
         $location.path('/expenses');
       })
       .catch(function (error) {
@@ -25,8 +20,6 @@ angular.module('fifty.auth', [])
     Auth.signup($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.fifty', token);
-
-        // XXX EE: right path?
         $location.path('/expenses');
       })
       .catch(function (error) {

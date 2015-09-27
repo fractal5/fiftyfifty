@@ -1,5 +1,4 @@
 <div id='container'>
-  <!-- Your html here -->
   <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <a href="#" class="navbar-brand">Fifty-Fifty</a>
@@ -11,19 +10,6 @@
         </ul>
       </div>
     </div>
-
-<!--   <nav class="navigation">
-    <ul>
-      <li>
-          <a class="selected" href="#/expenses">Expenses</a>
-      </li>
- --><!--        <li>
-          <a href="#/shorten">Shorten</a>
-      </li>
- -->    
-<!--     </ul>
-  </nav>
- -->
 </div>
 
 <div id="main">
@@ -59,8 +45,6 @@
 
 </form>
 
-<!-- <input type='text' ng-model='search' placeholder='filter' /> -->
-
 <div class="expenses">
   <table class="table table-striped">
     <thead>
@@ -75,27 +59,12 @@
     <tbody>
     <tr ng-repeat="expense in data.expenses | orderBy: '-date' ">
       <td class="date">{{ expense.date | dateFormat: 'MM/dd/yyyy' }}</td>
-      <!-- <td class="date">{{ expense.date }}</td> -->
       <td class="payee">{{ expense.payee }}</td>
       <td class="amount">{{ expense.amount }}</td>
       <td class="category">{{ expense.category }}</td>
       <td class="payer">{{ expense.payer }}</td>
     </tr>
   </tbody>
-
-  <!--
-  <div class="expense"
-      ng-repeat="expense in data.expenses | filter:search | orderBy:'-created_at'">
-    <div class="info">
-      <div class="visits"> 
-        <span class="count">{{ link.visits }}</span>Visits
-      </div>
-      <div class="title">{{ link.title }}</div>
-      <div class="original">{{ link.url }}</div>
-      <a href="http://localhost:8000/api/links/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>
-    </div>
-  </div>
-  -->
 </table>
 </div>
 </div>

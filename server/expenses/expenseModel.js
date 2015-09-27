@@ -10,8 +10,6 @@ var Expense = db.Model.extend({
   user: function() {
     return this.belongsTo(User, 'userid');
   },
-  // initialize: function(){
-  // }
 });
 
 module.exports = Expense;

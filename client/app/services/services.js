@@ -2,7 +2,6 @@ angular.module('fifty.services', [])
 
 .factory('Expenses', function ($http) {
   var getAll = function () {
-    console.log("Expenses.getAll");
     return $http({
       method: 'GET',
       url: '/api/expenses'
@@ -13,7 +12,6 @@ angular.module('fifty.services', [])
   };
 
   var addExpense = function (expense) {
-    console.log("Expenses.addExpense, ", expense);
     return $http({
       method: 'POST',
       url: '/api/expenses',
@@ -22,7 +20,6 @@ angular.module('fifty.services', [])
   };
 
   var getSpending = function() {
-    console.log("Expenses.getSpending");
     return $http({
       method: 'GET',
       url: '/api/expenses/reports'
@@ -33,7 +30,6 @@ angular.module('fifty.services', [])
   };
 
   var getCategories = function() {
-    console.log("Expenses.getCategories");
     return $http({
       method: 'GET',
       url: '/api/expenses/categories'
@@ -51,13 +47,9 @@ angular.module('fifty.services', [])
   };
 })
 .factory('Auth', function ($http, $location, $window) {
-  // Don't touch this Auth service!!!
-  // it is responsible for authenticating our user
-  // by exchanging the user's username and password
-  // for a JWT from the server
-  // that JWT is then stored in localStorage as 'com.shortly'
-  // after you signin/signup open devtools, click resources,
-  // then localStorage and you'll see your token from the server
+  // Authenticates our user by exchanging the user's username 
+  // and password for a JWT from the server. The JWT is then 
+  // stored in localStorage as 'com.fifty'.
   var signin = function (user) {
     return $http({
       method: 'POST',

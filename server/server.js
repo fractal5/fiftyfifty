@@ -1,10 +1,6 @@
 var express = require('express');
-
-// XXX EE: connect database here?
 var db = require('./config');
-
 var app = express();
-
 
 require('./lib/middleware.js')(app, express);
 
